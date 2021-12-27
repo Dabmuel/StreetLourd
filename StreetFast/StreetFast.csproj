@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>StreetLourd</RootNamespace>
+    <AssemblyName>StreetLourd</AssemblyName>
+    <ApplicationIcon>coach.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="View\bg.jpg" />
+    <None Remove="View\circuit.jpg" />
+	<None Remove="View\rally.jpg" />
+	<None Remove="View\cross-country.jpg" />
+	<None Remove="View\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\bg.jpg" />
+    <Resource Include="View\circuit.jpg" />
+	<Resource Include="View\rally.jpg" />
+	<Resource Include="View\cross-country.jpg" />
+	<Resource Include="View\logo.png" />
+  </ItemGroup>
+
+</Project>
