@@ -14,6 +14,8 @@ namespace StreetLourd.Controller
         public string Type { get => this.Map.Type; }
         public bool Checked { get => this.mapButton.Check.IsChecked.Value; }
 
+        private bool ResearchOnly { get => this.viewMap.ChBxOnlyResearch.IsChecked.Value; set => this.viewMap.ChBxOnlyResearch.IsChecked = value; }
+
         private ViewMap viewMap { get; set; }
         private ViewAddCar viewAddCar { get; set; }
         private ViewAddRun viewAddRun { get; set; }
@@ -81,6 +83,8 @@ namespace StreetLourd.Controller
             this.viewMap.Activated += this.RefreshCar;
             this.viewMap.CbFilter.SelectionChanged += this.RefreshCar;
             this.viewMap.CbSort.SelectionChanged += this.RefreshCar;
+            this.viewMap.TxBxResearch.TextChanged += this.RefreshCar;
+            this.viewMap.ChBxOnlyResearch.Click += this.RefreshCar;
         }
 
         public void OpenAddCarWindow(object a, object b)
@@ -137,8 +141,11 @@ namespace StreetLourd.Controller
         private void RefreshCar()
         {
             this.viewMap.List.Items.Clear();
+
             string Filter = ((ComboBoxItem)this.viewMap.CbFilter.SelectedItem).Content.ToString();
             string Sort = ((ComboBoxItem)this.viewMap.CbSort.SelectedItem).Content.ToString();
+            bool ResearchOnly = this.ResearchOnly;
+            string ResearchQuery = this.viewMap.TxBxResearch.Text;
 
             List<Model.Schema.Car> CarList = this.Map.Cars(Filter, Sort);
             List<Model.Schema.Car> TotalCarList = this.Map.Cars("Toutes");
@@ -159,6 +166,10 @@ namespace StreetLourd.Controller
                 ModelCar modelCar = new ModelCar(Car);
                 Frame frame = new Frame();
 
+                if (ResearchOnly)
+                    if (!IsRightCar(modelCar, ResearchQuery))
+                        continue;
+
                 frame.HorizontalAlignment = HorizontalAlignment.Left;
                 frame.VerticalAlignment = VerticalAlignment.Top;
                 frame.Margin = new Thickness(0, 0, 0, 0);
@@ -170,6 +181,10 @@ namespace StreetLourd.Controller
                 viewRun.TxId.Text = this.Map.Cars().FindIndex(x => x == Car).ToString(); ;
                 viewRun.Width = this.viewMap.List.ActualWidth - 30;
                 viewRun.Height = 48;
+
+                if (!ResearchOnly)
+                    if (IsRightCar(modelCar, ResearchQuery))
+                        viewRun.Background = StreetLourdColor.ResearchColor;
 
                 switch (Sort)
                 {
@@ -186,6 +201,21 @@ namespace StreetLourd.Controller
                 frame.Content = viewRun;
                 this.viewMap.List.Items.Add(frame);
             }
+        }
+
+        private bool IsRightCar(ModelCar Car, string Query)
+        {
+            if (Query.Replace(" ", "").Length == 0)
+                return false;
+            string[] queries = Query.ToUpper().Split(" ");
+            foreach(string query in queries)
+            {
+                if (Car.Company.ToUpper().Contains(query))
+                    return true;
+                if (Car.Name.ToUpper().Contains(query))
+                    return true;
+            }
+            return false;
         }
 
         private void OpenAddRunWindow(int Id)

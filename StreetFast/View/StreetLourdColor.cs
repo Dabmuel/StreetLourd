@@ -59,5 +59,7 @@ namespace StreetLourd.View
                     return new SolidColorBrush(Color.FromRgb(255, 255, 255));
             }
         }
+
+        static public SolidColorBrush ResearchColor = new SolidColorBrush(Color.FromArgb(128, 167, 37, 220));
     }
 }

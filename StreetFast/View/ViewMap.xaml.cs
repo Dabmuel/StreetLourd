@@ -24,6 +24,17 @@ namespace StreetLourd.View
 
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            if(this.ActualWidth > 596)
+            {
+                TxBxResearch.Visibility = Visibility.Visible;
+                ChBxOnlyResearch.Visibility = Visibility.Visible;
+                TxBxResearch.Width = this.ActualWidth - 595;
+            }
+            else
+            {
+                TxBxResearch.Visibility = Visibility.Hidden;
+                ChBxOnlyResearch.Visibility = Visibility.Hidden;
+            }
             foreach(Frame item in this.List.Items)
             {
                 ((ViewRun)item.Content).Width = this.List.ActualWidth - 30;

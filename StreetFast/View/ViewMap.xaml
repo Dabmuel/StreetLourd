@@ -39,7 +39,7 @@
             <ComboBoxItem Content="Supprimées"></ComboBoxItem>
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="150,25,0,0" Text="Filtre :" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <ComboBox x:Name="CbSort" HorizontalAlignment="Left" Margin="385,25,0,0" VerticalAlignment="Top" Width="150" SelectedIndex="0">
+        <ComboBox x:Name="CbSort" HorizontalAlignment="Left" Margin="373,25,0,0" VerticalAlignment="Top" Width="150" SelectedIndex="0">
             <ComboBoxItem Content="Temps"></ComboBoxItem>
             <ComboBoxItem Content="Marque"></ComboBoxItem>
             <ComboBoxItem Content="Nombre d'essais"></ComboBoxItem>
@@ -47,6 +47,9 @@
             <ComboBoxItem Content="Rien"></ComboBoxItem>
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin= "350,25,0,0" Text="Tri :" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <CheckBox x:Name="ChBxOnlyResearch" Content="" HorizontalAlignment="Left" Margin="540,28,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxBxResearch" HorizontalAlignment="Left" Margin="560,25,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="20"/>
+        
         
         <Button x:Name="BtAddRun" Content="Nouveau chrono" HorizontalAlignment="Left" Margin="185,0,0,20" VerticalAlignment="Bottom" Width="100" IsEnabled="False"/>
         <Button x:Name="BtChangeCar" Content="Modifier" HorizontalAlignment="Left" Margin="310,0,0,20" VerticalAlignment="Bottom" Width="100" IsEnabled="False"/>
