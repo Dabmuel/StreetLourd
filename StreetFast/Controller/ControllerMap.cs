@@ -144,7 +144,6 @@ namespace StreetLourd.Controller
 
             string Filter = ((ComboBoxItem)this.viewMap.CbFilter.SelectedItem).Content.ToString();
             string Sort = ((ComboBoxItem)this.viewMap.CbSort.SelectedItem).Content.ToString();
-            bool ResearchOnly = this.ResearchOnly;
             string ResearchQuery = this.viewMap.TxBxResearch.Text;
 
             List<Model.Schema.Car> CarList = this.Map.Cars(Filter, Sort);
@@ -162,13 +161,14 @@ namespace StreetLourd.Controller
 
             foreach (Model.Schema.Car Car in CarList)
             {
-                ViewRun viewRun = new ViewRun();
                 ModelCar modelCar = new ModelCar(Car);
-                Frame frame = new Frame();
 
-                if (ResearchOnly)
+                if (this.ResearchOnly)
                     if (!IsRightCar(modelCar, ResearchQuery))
                         continue;
+
+                ViewRun viewRun = new ViewRun();
+                Frame frame = new Frame();
 
                 frame.HorizontalAlignment = HorizontalAlignment.Left;
                 frame.VerticalAlignment = VerticalAlignment.Top;
@@ -182,7 +182,7 @@ namespace StreetLourd.Controller
                 viewRun.Width = this.viewMap.List.ActualWidth - 30;
                 viewRun.Height = 48;
 
-                if (!ResearchOnly)
+                if (!this.ResearchOnly)
                     if (IsRightCar(modelCar, ResearchQuery))
                         viewRun.Background = StreetLourdColor.ResearchColor;
 

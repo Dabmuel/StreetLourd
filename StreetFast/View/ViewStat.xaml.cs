@@ -24,6 +24,7 @@ namespace StreetLourd.View
 
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            TxBxResearch.Width = this.ActualWidth - 436;
             foreach (Frame item in this.List.Items)
             {
                 ((ViewRun)item.Content).Width = this.List.ActualWidth - 30;

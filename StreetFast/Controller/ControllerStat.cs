@@ -15,6 +15,7 @@ namespace StreetLourd.Controller
         private List<ModelMap> MapsList { get; set; }
         private List<CarStat> StatList { get; set; } = new List<CarStat>();
         private string Type { get; set; }
+        private bool ResearchOnly { get => this.viewStat.ChBxOnlyResearch.IsChecked.Value; set => this.viewStat.ChBxOnlyResearch.IsChecked = value; }
 
         public ControllerStat(string Type, List<ModelMap> MapsList)
         {
@@ -24,6 +25,8 @@ namespace StreetLourd.Controller
 
             this.viewStat.Activated += this.RefreshViewList;
             this.viewStat.CbFilter.SelectionChanged += this.NewFilter;
+            this.viewStat.ChBxOnlyResearch.Click += this.RefreshViewList;
+            this.viewStat.TxBxResearch.TextChanged += this.RefreshViewList;
 
             this.RefreshList("Toutes");
         }
@@ -92,8 +95,14 @@ namespace StreetLourd.Controller
         private void RefreshViewList()
         {
             this.viewStat.List.Items.Clear();
+            string ResearchQuery = this.viewStat.TxBxResearch.Text;
+
             foreach (CarStat Car in StatList)
             {
+                if (this.ResearchOnly)
+                    if (!IsRightCar(Car, ResearchQuery))
+                        continue;
+
                 ViewRun viewRun = new ViewRun();
                 Frame frame = new Frame();
 
@@ -110,6 +119,10 @@ namespace StreetLourd.Controller
                 viewRun.TxDate.Text = Car.RunNb.ToString() + " tours";
                 viewRun.TxTime.Text = Car.Stat.ToString();
 
+                if (!this.ResearchOnly)
+                    if (IsRightCar(Car, ResearchQuery))
+                        viewRun.Background = StreetLourdColor.ResearchColor;
+
                 frame.Content = viewRun;
                 this.viewStat.List.Items.Add(frame);
             }
@@ -120,6 +133,21 @@ namespace StreetLourd.Controller
             InList.RunNb += ToAdd.RunNb;
             InList.Stat = ((InList.Stat * InList.MapNb) + ToAdd.Stat) / (InList.MapNb + 1);
             InList.MapNb++;
+        }
+
+        private bool IsRightCar(CarStat Car, string Query)
+        {
+            if (Query.Replace(" ", "").Length == 0)
+                return false;
+            string[] queries = Query.ToUpper().Split(" ");
+            foreach (string query in queries)
+            {
+                if (Car.Company.ToUpper().Contains(query))
+                    return true;
+                if (Car.Name.ToUpper().Contains(query))
+                    return true;
+            }
+            return false;
         }
     }
 }
