@@ -94,6 +94,15 @@ namespace StreetLourd.Controller
 
         public void CloseWindow(object a = null, object b = null)
         {
+            if (this.viewChangeMap != null)
+                if (this.viewChangeMap.IsLoaded)
+                    viewChangeMap.Close();
+            if (this.viewAddRun != null)
+                if (this.viewAddRun.IsLoaded)
+                    viewAddRun.Close();
+            if (this.viewAddCar != null)
+                if (this.viewAddCar.IsLoaded)
+                    viewAddCar.Close();
             this.controllerMain.ClosePage(viewMap);
             this.viewMap = null;
         }
@@ -350,18 +359,9 @@ namespace StreetLourd.Controller
         public void DeleteMap(object a, object b)
         {
             this.viewSure.Close();
-            if (this.viewChangeMap != null)
-                if (this.viewChangeMap.IsLoaded)
-                    viewChangeMap.Close();
-            if (this.viewAddRun != null)
-                if (this.viewAddRun.IsLoaded)
-                    viewAddRun.Close();
-            if (this.viewAddCar != null)
-                if (this.viewAddCar.IsLoaded)
-                    viewAddCar.Close();
+            this.CloseWindow();
             this.controllerMain.DeleteControllerMap(this);
             this.Map.DeleteMap();
-            this.CloseWindow();
         }
 
         public void OpenChangeCarWindow(object a, object b)
