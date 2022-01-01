@@ -46,6 +46,56 @@ namespace StreetLourd.Controller
             this.viewAddMap.Visibility = System.Windows.Visibility.Visible;
         }
 
+        public void AddMapPage(ViewMap viewMap, ControllerMap controllerMap)
+        {
+            Frame frame = new Frame();
+            frame.Content = viewMap;
+            TabItem tabItem = new TabItem();
+            tabItem.Header = controllerMap.GetMap.Name;
+            tabItem.Content = frame;
+            this.viewMain.Tab.Items.Add(tabItem);
+            this.viewMain.Tab.SelectedItem = tabItem;
+        }
+
+        public void AddStatPage(ViewStat viewStat, string Type)
+        {
+            Frame frame = new Frame();
+            frame.Content = viewStat;
+            TabItem tabItem = new TabItem();
+            tabItem.Header = "Rapport " + Type;
+            tabItem.Content = frame;
+            this.viewMain.Tab.Items.Add(tabItem);
+            this.viewMain.Tab.SelectedItem = tabItem;
+        }
+
+        public void SetPage(object Page)
+        {
+            foreach (TabItem tabItem in this.viewMain.Tab.Items)
+            {
+                if (this.viewMain.Tab.Items.IndexOf(tabItem) == 0)
+                    continue;
+                if (((Frame)tabItem.Content).Content == Page)
+                {
+                    this.viewMain.Tab.SelectedItem = tabItem;
+                    break;
+                }
+            }
+        }
+
+        public void ClosePage(object Page)
+        {
+            foreach(TabItem tabItem in this.viewMain.Tab.Items)
+            {
+                if (this.viewMain.Tab.Items.IndexOf(tabItem) == 0)
+                    continue;
+                if(((Frame)tabItem.Content).Content == Page)
+                {
+                    this.viewMain.Tab.Items.Remove(tabItem);
+                    break;
+                }
+            }
+        }
+
         public void OpenStatWindow(object a, object b)
         {
             Button bt = (Button)a;
@@ -53,13 +103,30 @@ namespace StreetLourd.Controller
             if (Type == "Cross-C")
                 Type = "Cross-Country";
 
+            foreach (TabItem tabItem in this.viewMain.Tab.Items)
+            {
+                if (tabItem.Header.ToString() == "Rapport " + Type)
+                {
+                    try
+                    {
+                        ViewStat uhoh = ((ViewStat)((Frame)tabItem.Content).Content);
+                        this.viewMain.Tab.SelectedItem = tabItem;
+                        return;
+                    }
+                    catch(InvalidCastException e)
+                    {
+                        continue;
+                    }
+                }
+            }
+
             List<StreetLourd.Model.ModelMap> MapsList= new List<StreetLourd.Model.ModelMap>();
             foreach(ControllerMap CtMap in this.Maps)
             {
                 if(CtMap.Type == Type && CtMap.Checked)
                     MapsList.Add(CtMap.GetMap);
             }
-            new ControllerStat(Type, MapsList);
+            new ControllerStat(Type, MapsList, this);
         }
 
         public void AddMap(object a, object b)

@@ -8,6 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace StreetLourd.View
@@ -15,13 +16,12 @@ namespace StreetLourd.View
     /// <summary>
     /// Logique d'interaction pour ViewStat.xaml
     /// </summary>
-    public partial class ViewStat : Window
+    public partial class ViewStat : Page
     {
         public ViewStat()
         {
             InitializeComponent();
         }
-
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             TxBxResearch.Width = this.ActualWidth - 436;

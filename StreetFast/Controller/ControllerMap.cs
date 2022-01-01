@@ -52,7 +52,7 @@ namespace StreetLourd.Controller
             foreach (Model.Schema.Car Car in TotalCarList)
                 TotalRunCount += Car.Runs.Count;
 
-            this.mapButton.Width = 490;
+            this.mapButton.Width = 690;
             this.mapButton.Check.IsChecked = true;
             this.mapButton.Bt.Content = this.Map.Name;
             this.mapButton.TxKm.Text = this.Map.DistanceTx;
@@ -64,8 +64,10 @@ namespace StreetLourd.Controller
         public void OpenWindow(object a, object b)
         {
             if (this.viewMap != null)
-                if (this.viewMap.IsLoaded)
-                    return;
+            {
+                this.controllerMain.SetPage(viewMap);
+                return;
+            }
             this.viewMap = new ViewMap();
             this.viewMap.Title = this.Map.Name;
             this.viewMap.TxName.Text = this.Map.Name;
@@ -74,17 +76,26 @@ namespace StreetLourd.Controller
             this.viewMap.ImgBg.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri("pack://application:,,,/StreetLourd;component/view/" + this.Map.Type.ToLower() + ".jpg"));
             this.viewMap.Visibility = System.Windows.Visibility.Visible;
 
+            this.viewMap.BtCloseMap.Click += this.CloseWindow;
             this.viewMap.BtAddCar.Click += this.OpenAddCarWindow;
             this.viewMap.BtAddRun.Click += this.OpenAddRunWindow;
             this.viewMap.BtDeletCar.Click += this.OpenCarSureWindow;
             this.viewMap.BtChangeMap.Click += this.OpenChangeMapWindow;
             this.viewMap.BtDeleteMap.Click += this.OpenMapSureWindow;
             this.viewMap.BtChangeCar.Click += this.OpenChangeCarWindow;
-            this.viewMap.Activated += this.RefreshCar;
             this.viewMap.CbFilter.SelectionChanged += this.RefreshCar;
             this.viewMap.CbSort.SelectionChanged += this.RefreshCar;
             this.viewMap.TxBxResearch.TextChanged += this.RefreshCar;
             this.viewMap.ChBxOnlyResearch.Click += this.RefreshCar;
+
+            this.controllerMain.AddMapPage(viewMap, this);
+            this.RefreshCar();
+        }
+
+        public void CloseWindow(object a = null, object b = null)
+        {
+            this.controllerMain.ClosePage(viewMap);
+            this.viewMap = null;
         }
 
         public void OpenAddCarWindow(object a, object b)
@@ -179,7 +190,10 @@ namespace StreetLourd.Controller
                 viewRun.TxClasse.Background = StreetLourdColor.ClassColor(modelCar.Classe);
                 viewRun.TxNb.Text = modelCar.Count;
                 viewRun.TxId.Text = this.Map.Cars().FindIndex(x => x == Car).ToString(); ;
-                viewRun.Width = this.viewMap.List.ActualWidth - 30;
+                if(viewMap.IsLoaded)
+                    viewRun.Width = this.viewMap.List.ActualWidth - 30;
+                else
+                    viewRun.Width = this.viewMap.List.Width - 30;
                 viewRun.Height = 48;
 
                 if (!this.ResearchOnly)
@@ -347,7 +361,7 @@ namespace StreetLourd.Controller
                     viewAddCar.Close();
             this.controllerMain.DeleteControllerMap(this);
             this.Map.DeleteMap();
-            this.viewMap.Close();
+            this.CloseWindow();
         }
 
         public void OpenChangeCarWindow(object a, object b)

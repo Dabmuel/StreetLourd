@@ -11,24 +11,29 @@ namespace StreetLourd.Controller
 {
     class ControllerStat
     {
+        private ControllerMain controllerMain { get; set; }
         private ViewStat viewStat { get; set; } = new ViewStat();
         private List<ModelMap> MapsList { get; set; }
         private List<CarStat> StatList { get; set; } = new List<CarStat>();
         private string Type { get; set; }
         private bool ResearchOnly { get => this.viewStat.ChBxOnlyResearch.IsChecked.Value; set => this.viewStat.ChBxOnlyResearch.IsChecked = value; }
 
-        public ControllerStat(string Type, List<ModelMap> MapsList)
+        public ControllerStat(string Type, List<ModelMap> MapsList, ControllerMain controllerMain)
         {
             this.Type = Type;
             this.MapsList = MapsList;
+            this.controllerMain = controllerMain;
             this.initView();
 
-            this.viewStat.Activated += this.RefreshViewList;
             this.viewStat.CbFilter.SelectionChanged += this.NewFilter;
             this.viewStat.ChBxOnlyResearch.Click += this.RefreshViewList;
             this.viewStat.TxBxResearch.TextChanged += this.RefreshViewList;
+            this.viewStat.BtCloseStat.Click += this.CloseWindow;
 
             this.RefreshList("Toutes");
+            this.RefreshViewList();
+
+            this.controllerMain.AddStatPage(this.viewStat, this.Type);
         }
 
         private void initView()
@@ -41,6 +46,12 @@ namespace StreetLourd.Controller
                 this.viewStat.MapList.Items.Add(txBlock);
             }
             this.viewStat.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        public void CloseWindow(object a = null, object b = null)
+        {
+            this.controllerMain.ClosePage(this.viewStat);
+            this.viewStat = null;
         }
 
         public void NewFilter(object a, object b)
@@ -114,7 +125,10 @@ namespace StreetLourd.Controller
                 viewRun.TxClasse.Text = " " + Car.Classe + " " + Car.Score + " ";
                 viewRun.TxClasse.Background = StreetLourdColor.ClassColor(Car.Classe);
                 viewRun.TxNb.Text = Car.MapNb.ToString() + " courses";
-                viewRun.Width = this.viewStat.List.ActualWidth - 30;
+                if (viewStat.IsLoaded)
+                    viewRun.Width = this.viewStat.List.ActualWidth - 30;
+                else
+                    viewRun.Width = this.viewStat.List.Width - 30;
                 viewRun.Height = 48;
                 viewRun.TxDate.Text = Car.RunNb.ToString() + " tours";
                 viewRun.TxTime.Text = Car.Stat.ToString();

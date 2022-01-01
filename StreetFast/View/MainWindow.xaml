@@ -5,16 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StreetLourd.View"
         mc:Ignorable="d"
-        Title="StreetLourd" Height="500" MinHeight="320" Width="700" MaxWidth="700" MinWidth="700">
+        Title="StreetLourd" Height="530" MinHeight="530" Width="900" MaxWidth="900" MinWidth="900">
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/view/bg.jpg" Stretch="UniformToFill"/>
-        </Grid.Background>
-        <ListBox x:Name="List" Margin="160,140,20,20" Background="#B2FFFFFF"/>
-        <Button x:Name="BtAddMap" Content="Ajouter une course" HorizontalAlignment="Left" Margin="20,150,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="BtStatCircuit" Content="Rapport Circuit" HorizontalAlignment="Left" Margin="20,190,0,0" VerticalAlignment="Top" Width="120" Background="#FF0F9FE6" FontWeight="Bold"/>
-        <Button x:Name="BtStatRally" Content="Rapport Rally" HorizontalAlignment="Left" Margin="20,215,0,0" VerticalAlignment="Top" Width="120" Background="#FFFA8704" FontWeight="Bold"/>
-        <Button x:Name="BtStatCross" Content="Rapport Cross-C" HorizontalAlignment="Left" Margin="20,240,0,0" VerticalAlignment="Top" Width="120" Background="#FF35DD52" FontWeight="Bold"/>
-        <Image HorizontalAlignment="Left" Height="138" Margin="10,0,0,0" VerticalAlignment="Top" Width="680" Source="/View/logo.png"/>
+        <TabControl x:Name="Tab">
+            <TabItem Header="Menu">
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/view/bg.jpg" Stretch="UniformToFill"/>
+                    </Grid.Background>
+                    <ListBox x:Name="List" Margin="160,140,20,20" Background="#B2FFFFFF"/>
+                    <Button x:Name="BtAddMap" Content="Ajouter une course" HorizontalAlignment="Left" Margin="20,150,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="BtStatCircuit" Content="Rapport Circuit" HorizontalAlignment="Left" Margin="20,190,0,0" VerticalAlignment="Top" Width="120" Background="#FF0F9FE6" FontWeight="Bold"/>
+                    <Button x:Name="BtStatRally" Content="Rapport Rally" HorizontalAlignment="Left" Margin="20,215,0,0" VerticalAlignment="Top" Width="120" Background="#FFFA8704" FontWeight="Bold"/>
+                    <Button x:Name="BtStatCross" Content="Rapport Cross-C" HorizontalAlignment="Left" Margin="20,240,0,0" VerticalAlignment="Top" Width="120" Background="#FF35DD52" FontWeight="Bold"/>
+                    <Image HorizontalAlignment="Left" Height="138" Margin="10,0,0,0" VerticalAlignment="Top" Width="680" Source="/View/logo.png"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
