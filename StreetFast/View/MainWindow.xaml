@@ -13,7 +13,7 @@
                     <Grid.Background>
                         <ImageBrush ImageSource="/view/bg.jpg" Stretch="UniformToFill"/>
                     </Grid.Background>
-                    <ListBox x:Name="List" Margin="160,140,20,20" Background="#B2FFFFFF"/>
+                    <ListBox x:Name="List" Margin="160,140,20,20" Background="#B2FFFFFF" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
                     <Button x:Name="BtAddMap" Content="Ajouter une course" HorizontalAlignment="Left" Margin="20,150,0,0" VerticalAlignment="Top" Width="120"/>
                     <Button x:Name="BtStatCircuit" Content="Rapport Circuit" HorizontalAlignment="Left" Margin="20,190,0,0" VerticalAlignment="Top" Width="120" Background="#FF0F9FE6" FontWeight="Bold"/>
                     <Button x:Name="BtStatRally" Content="Rapport Rally" HorizontalAlignment="Left" Margin="20,215,0,0" VerticalAlignment="Top" Width="120" Background="#FFFA8704" FontWeight="Bold"/>

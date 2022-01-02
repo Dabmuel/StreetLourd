@@ -52,7 +52,7 @@ namespace StreetLourd.Controller
             foreach (Model.Schema.Car Car in TotalCarList)
                 TotalRunCount += Car.Runs.Count;
 
-            this.mapButton.Width = 690;
+            this.mapButton.Width = 665;
             this.mapButton.Check.IsChecked = true;
             this.mapButton.Bt.Content = this.Map.Name;
             this.mapButton.TxKm.Text = this.Map.DistanceTx;
@@ -200,9 +200,9 @@ namespace StreetLourd.Controller
                 viewRun.TxNb.Text = modelCar.Count;
                 viewRun.TxId.Text = this.Map.Cars().FindIndex(x => x == Car).ToString(); ;
                 if(viewMap.IsLoaded)
-                    viewRun.Width = this.viewMap.List.ActualWidth - 30;
+                    viewRun.Width = this.viewMap.List.ActualWidth - 90;
                 else
-                    viewRun.Width = this.viewMap.List.Width - 30;
+                    viewRun.Width = this.viewMap.List.Width - 90;
                 viewRun.Height = 48;
 
                 if (!this.ResearchOnly)

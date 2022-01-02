@@ -10,7 +10,7 @@
 
     <Grid>
         <Border BorderThickness="2" BorderBrush="Black"/>
-        <Button x:Name="Bt" Content="Nom de le map" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Width="200" HorizontalContentAlignment="Left" Padding="5,1,1,1"/>
+        <Button x:Name="Bt" Content="Nom de le map" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Width="220" HorizontalContentAlignment="Left" Padding="5,1,1,1"/>
         <TextBlock x:Name="TxType" HorizontalAlignment="Left" Margin="230,0,0,0" Text="Cross-Country" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"/>
         <TextBlock x:Name="TxKm" HorizontalAlignment="Left" Margin="325,0,0,0" Text="100 km" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock x:Name="TxTries" HorizontalAlignment="Left" Margin="375,0,0,0" Text="500 enregistrements" TextWrapping="Wrap" VerticalAlignment="Center"/>

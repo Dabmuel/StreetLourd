@@ -17,7 +17,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="20,80,0,0" Text="Liste des courses:" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
         <ListBox x:Name="MapList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Height="195" Margin="20,100,0,0"/>
 
-        <ListBox x:Name="List" Margin="170,50,20,20" Background="#E5FFFFFF"/>
+        <ListBox x:Name="List" Margin="170,50,20,20" Background="#E5FFFFFF" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
         <ComboBox x:Name="CbFilter" HorizontalAlignment="Left" Margin="205,25,0,0" VerticalAlignment="Top" Width="150" SelectedIndex="0">
             <ComboBoxItem Content="Toutes"></ComboBoxItem>
             <ComboBoxItem Content="X"></ComboBoxItem>

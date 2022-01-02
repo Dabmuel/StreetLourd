@@ -14,7 +14,7 @@
         <Rectangle HorizontalAlignment="Left" Height="160" Margin="15,25,0,0" Stroke="Black" VerticalAlignment="Top" Width="120" Fill="#CCFFFFFF"/>
         <Rectangle HorizontalAlignment="Left" Height="135" Margin="15,200,0,0" Stroke="Black" VerticalAlignment="Top" Width="120" Fill="#CCFFFFFF"/>
         <Rectangle HorizontalAlignment="Left" Height="90" Margin="15,350,0,0" Stroke="Black" VerticalAlignment="Top" Width="120" Fill="#CCFFFFFF"/>
-        <ListBox x:Name="List" Margin="150,50,20,20" Background="#E5FFFFFF" SelectionChanged="List_SelectionChanged"/>
+        <ListBox x:Name="List" Margin="150,50,20,20" Background="#E5FFFFFF" SelectionChanged="List_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
 
         <TextBlock x:Name="TxName" HorizontalAlignment="Left" Margin="20,30,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" FontWeight="Bold"/>
         <TextBlock x:Name="TxType" HorizontalAlignment="Left" Margin="20,70,0,0" Text="Type" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
