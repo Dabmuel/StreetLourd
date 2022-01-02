@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StreetLourd.View"
         mc:Ignorable="d"
-        Title="StreetLourd" Height="530" MinHeight="530" Width="900" MaxWidth="900" MinWidth="900">
+        Title="StreetLourd" Height="530" MinHeight="530" Width="900" MaxWidth="900" MinWidth="900" Opacity="0.995" WindowStyle="SingleBorderWindow" BorderThickness="1,0,0,0" Visibility="Visible">
+    <Window.Effect>
+        <DropShadowEffect/>
+    </Window.Effect>
     <Grid>
         <TabControl x:Name="Tab">
             <TabItem Header="Menu">

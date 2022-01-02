@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StreetLourd.View"
         mc:Ignorable="d"
-        Title="Ajouter une course" Height="200" Width="350" ResizeMode="NoResize">
+        Title="Ajouter une course" Height="200" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="20,20,0,0" Text="Nom :" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="TxName" HorizontalAlignment="Left" Margin="120,20,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>

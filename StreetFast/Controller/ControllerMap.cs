@@ -114,6 +114,21 @@ namespace StreetLourd.Controller
                     return;
             this.viewAddCar = new ViewAddCar();
             this.viewAddCar.BtAdd.Click += this.AddCar;
+            this.viewAddCar.TxCompany.KeyDown += (a, e) =>
+            {
+                if (e.Key == System.Windows.Input.Key.Return)
+                    this.AddCar(null, null);
+            };
+            this.viewAddCar.TxName.KeyDown += (a, e) =>
+            {
+                if (e.Key == System.Windows.Input.Key.Return)
+                    this.AddCar(null, null);
+            };
+            this.viewAddCar.TxScore.KeyDown += (a, e) =>
+            {
+                if (e.Key == System.Windows.Input.Key.Return)
+                    this.AddCar(null, null);
+            };
             this.viewAddCar.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -200,9 +215,9 @@ namespace StreetLourd.Controller
                 viewRun.TxNb.Text = modelCar.Count;
                 viewRun.TxId.Text = this.Map.Cars().FindIndex(x => x == Car).ToString(); ;
                 if(viewMap.IsLoaded)
-                    viewRun.Width = this.viewMap.List.ActualWidth - 90;
+                    viewRun.Width = this.viewMap.List.ActualWidth - 30;
                 else
-                    viewRun.Width = this.viewMap.List.Width - 90;
+                    viewRun.Width = this.viewMap.List.Width - 30;
                 viewRun.Height = 48;
 
                 if (!this.ResearchOnly)
@@ -252,6 +267,11 @@ namespace StreetLourd.Controller
             this.viewAddRun.TxMap.Text = this.Map.Name;
             this.viewAddRun.TxCar.Text = Car.Company + " " + Car.Name;
             this.viewAddRun.BtAdd.Click += this.AddRun;
+            this.viewAddRun.TxTime.KeyDown += (a, e) => 
+            {
+                if (e.Key == System.Windows.Input.Key.Return)
+                    this.AddRun(null, null);
+            };
             this.viewAddRun.Visibility = Visibility.Visible;
         }
 
@@ -269,6 +289,11 @@ namespace StreetLourd.Controller
             this.viewAddRun.TxMap.Text = this.Map.Name;
             this.viewAddRun.TxCar.Text = Car.Company + " " + Car.Name;
             this.viewAddRun.BtAdd.Click += this.AddRun;
+            this.viewAddRun.TxTime.KeyDown += (a, e) =>
+            {
+                if (e.Key == System.Windows.Input.Key.Return)
+                    this.AddRun(null, null);
+            };
             this.viewAddRun.Visibility = Visibility.Visible;
         }
 
@@ -322,6 +347,16 @@ namespace StreetLourd.Controller
                     this.viewChangeMap.CbType.SelectedItem = item;
             }
             this.viewChangeMap.BtAdd.Click += this.ChangeMap;
+            this.viewChangeMap.TxName.KeyDown += (a, e) =>
+            {
+                if (e.Key == System.Windows.Input.Key.Return)
+                    this.ChangeMap(null, null);
+            };
+            this.viewChangeMap.TxKm.KeyDown += (a, e) =>
+            {
+                if (e.Key == System.Windows.Input.Key.Return)
+                    this.ChangeMap(null, null);
+            };
             this.viewChangeMap.Visibility = Visibility.Visible;
         }
 
@@ -381,6 +416,21 @@ namespace StreetLourd.Controller
             this.viewAddCar.TxName.Text = Car.Name;
             this.viewAddCar.TxScore.Text = Car.Score;
             this.viewAddCar.BtAdd.Click += this.ChangeCar;
+            this.viewAddCar.TxCompany.KeyDown += (a, e) =>
+            {
+                if (e.Key == System.Windows.Input.Key.Return)
+                    this.ChangeCar(null, null);
+            };
+            this.viewAddCar.TxName.KeyDown += (a, e) =>
+            {
+                if (e.Key == System.Windows.Input.Key.Return)
+                    this.ChangeCar(null, null);
+            };
+            this.viewAddCar.TxScore.KeyDown += (a, e) =>
+            {
+                if (e.Key == System.Windows.Input.Key.Return)
+                    this.ChangeCar(null, null);
+            };
             this.viewAddCar.Visibility = System.Windows.Visibility.Visible;
         }
 

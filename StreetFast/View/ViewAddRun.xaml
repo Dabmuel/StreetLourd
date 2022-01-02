@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StreetLourd.View"
         mc:Ignorable="d"
-        Title="Ajouter un chrono" Height="200" Width="350" ResizeMode="NoResize">
+        Title="Ajouter un chrono" Height="200" Width="350" ResizeMode="NoResize" WindowStyle="None" FlowDirection="LeftToRight" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock x:Name="TxId" HorizontalAlignment="Left" Margin="0,0,0,0" Text="Id" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Hidden"/>
         <TextBlock x:Name="TxMap" HorizontalAlignment="Left" Margin="20,20,0,0" Text="Map" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="TxCar" HorizontalAlignment="Left" Margin="20,50,0,0" Text="Voiture" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="20,80,0,0" Text="Chrono :" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="TxTime" HorizontalAlignment="Left" Margin="120,80,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <Button x:Name="BtAdd" Content="Ajouter" HorizontalAlignment="Left" Margin="40,140,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button Content="Annuler" HorizontalAlignment="Right" Margin="0,140,40,0" VerticalAlignment="Top" Width="100" Click="Close"/>
+        <Button x:Name="BtAdd" Content="Ajouter" HorizontalAlignment="Left" Margin="40,130,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Annuler" HorizontalAlignment="Right" Margin="0,130,40,0" VerticalAlignment="Top" Width="100" Click="Close"/>
     </Grid>
 </Window>

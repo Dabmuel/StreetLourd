@@ -43,6 +43,16 @@ namespace StreetLourd.Controller
                     return;
             this.viewAddMap = new ViewAddMap();
             this.viewAddMap.BtAdd.Click += this.AddMap;
+            this.viewAddMap.TxName.KeyDown += (a, e) =>
+            {
+                if (e.Key == System.Windows.Input.Key.Return)
+                    this.AddMap(null, null);
+            };
+            this.viewAddMap.TxKm.KeyDown += (a, e) =>
+            {
+                if (e.Key == System.Windows.Input.Key.Return)
+                    this.AddMap(null, null);
+            };
             this.viewAddMap.Visibility = System.Windows.Visibility.Visible;
         }
 

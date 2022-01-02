@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StreetLourd.View"
         mc:Ignorable="d"
-        Title="Ajouter une voiture" Height="200" Width="350" ResizeMode="NoResize">
+        Title="Ajouter une voiture" Height="200" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <TextBlock x:Name="TxId" HorizontalAlignment="Left" Margin="0,0,0,0" Text="Id" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Hidden"/>
         <TextBlock HorizontalAlignment="Left" Margin="20,20,0,0" Text="Marque :" TextWrapping="Wrap" VerticalAlignment="Top"/>

@@ -131,9 +131,9 @@ namespace StreetLourd.Controller
                 viewRun.TxClasse.Background = StreetLourdColor.ClassColor(Car.Classe);
                 viewRun.TxNb.Text = Car.MapNb.ToString() + " courses";
                 if (viewStat.IsLoaded)
-                    viewRun.Width = this.viewStat.List.ActualWidth - 33;
+                    viewRun.Width = this.viewStat.List.ActualWidth - 30;
                 else
-                    viewRun.Width = this.viewStat.List.Width - 33;
+                    viewRun.Width = this.viewStat.List.Width - 30;
                 viewRun.Height = 48;
                 viewRun.TxDate.Text = Car.RunNb.ToString() + " tours";
                 viewRun.TxTime.Text = Car.Stat.ToString();
