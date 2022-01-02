@@ -41,9 +41,11 @@ namespace StreetLourd.Controller
             this.viewStat.TxName.Text = "Rapport " + this.Type;
             foreach(ModelMap map in this.MapsList)
             {
-                TextBlock txBlock = new TextBlock();
-                txBlock.Text = map.Name;
-                this.viewStat.MapList.Items.Add(txBlock);
+                CheckBox chBox = new CheckBox();
+                chBox.Content = map.Name;
+                chBox.IsChecked = true;
+                chBox.Click += this.NewFilter;
+                this.viewStat.MapList.Items.Add(chBox);
             }
             this.viewStat.Visibility = System.Windows.Visibility.Visible;
         }
@@ -66,9 +68,12 @@ namespace StreetLourd.Controller
             List<ModelMapStat> MapsStatList = new List<ModelMapStat>();
             this.StatList.Clear();
 
+            int Index = 0;
             foreach (ModelMap map in this.MapsList)
             {
-                MapsStatList.Add(new ModelMapStat(map, Filter));
+                if(((CheckBox)this.viewStat.MapList.Items[Index]).IsChecked.Value)
+                    MapsStatList.Add(new ModelMapStat(map, Filter));
+                Index++;
             }
 
             if(MapsStatList.Count > 0)

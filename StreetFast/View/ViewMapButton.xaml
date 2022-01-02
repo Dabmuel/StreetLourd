@@ -14,6 +14,6 @@
         <TextBlock x:Name="TxType" HorizontalAlignment="Left" Margin="230,0,0,0" Text="Cross-Country" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"/>
         <TextBlock x:Name="TxKm" HorizontalAlignment="Left" Margin="325,0,0,0" Text="100 km" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock x:Name="TxTries" HorizontalAlignment="Left" Margin="375,0,0,0" Text="500 enregistrements" TextWrapping="Wrap" VerticalAlignment="Center"/>
-        <CheckBox x:Name="Check" Content="" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center"/>
+        <CheckBox x:Name="Check" Content="" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Visibility="Hidden"/>
     </Grid>
 </Page>
