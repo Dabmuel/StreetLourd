@@ -277,35 +277,27 @@ namespace StreetLourd.Controller
 
         public void OpenAddRunWindow(object a, object b)
         {
-            if (this.viewAddRun != null)
-                if (this.viewAddRun.IsLoaded)
-                    return;
             if (this.viewMap.List.SelectedItem == null)
                 return;
             int Id = int.Parse(((ViewRun)((Frame)this.viewMap.List.SelectedItem).Content).TxId.Text);
-            ModelCar Car = new ModelCar(this.Map.Cars()[Id]);
-            this.viewAddRun = new ViewAddRun();
-            this.viewAddRun.TxId.Text = Id.ToString();
-            this.viewAddRun.TxMap.Text = this.Map.Name;
-            this.viewAddRun.TxCar.Text = Car.Company + " " + Car.Name;
-            this.viewAddRun.BtAdd.Click += this.AddRun;
-            this.viewAddRun.TxTime.KeyDown += (a, e) =>
-            {
-                if (e.Key == System.Windows.Input.Key.Return)
-                    this.AddRun(null, null);
-            };
-            this.viewAddRun.Visibility = Visibility.Visible;
+            this.OpenAddRunWindow(Id);
         }
 
         public void AddRun(object a, object b)
         {
             int Id = int.Parse(this.viewAddRun.TxId.Text);
             ModelCar Car = new ModelCar(this.Map.Cars()[Id]);
-            if (Car.NewRun(this.viewAddRun.TxTime.Text))
+            int runAddResult = Car.NewRun(this.viewAddRun.TxTime.Text);
+            if (runAddResult > 0)
             {
                 this.viewAddRun.Close();
                 this.RefreshCar();
                 this.Map.Save();
+
+                if (runAddResult > 1)
+                {
+                    this.OpenFastBoiWindow();
+                }
             }
         }
 
@@ -470,6 +462,13 @@ namespace StreetLourd.Controller
             this.viewAddCar.Close();
             this.RefreshCar();
             this.Map.Save();
+        }
+
+        private void OpenFastBoiWindow()
+        {
+            ViewFastBoi fastBoiWindow = new ViewFastBoi();
+
+            fastBoiWindow.Visibility = Visibility.Visible;
         }
     }
 }

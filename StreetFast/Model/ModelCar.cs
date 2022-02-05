@@ -94,16 +94,16 @@ namespace StreetLourd.Model
             this.BestTimeIndex = newIndex;
         }
 
-        public bool NewRun(string Time)
+        public int NewRun(string Time)
         {
             double NewTime = 0;
             string[] Explode = Time.Split(":");
             int Min;
             double Sec;
             if (Explode.Length != 2)
-                return false;
+                return 0;
             if (Explode[1].Length != 6)
-                return false;
+                return 0;
             try
             {
                 Min = int.Parse(Explode[0]);
@@ -111,17 +111,29 @@ namespace StreetLourd.Model
             }
             catch(Exception e)
             {
-                return false;
+                return 0;
             }
             if (Sec >= 60)
-                return false;
+                return 0;
 
             NewTime = (Min * 60) + Sec;
             Run NewRun = new Run();
             NewRun.Time = NewTime;
+
+            int returner = 1;
+            if(this.Data.Runs.Count > 0)
+            {
+                returner = 2;
+                foreach(Run run in this.Data.Runs)
+                {
+                    if (run.Time < NewTime)
+                        returner = 1;
+                }
+            }
+
             this.Data.Runs.Add(NewRun);
 
-            return true;
+            return returner;
         }
 
         public string LastTime()
